@@ -6,6 +6,7 @@ $conn = connect();
 $data = selectMain($conn);
 $countPage = paginationCount($conn);
 $tag = getAllTags($conn);
+$cat = getAllCatInfo($conn);
 close($conn);
 ?>
 
@@ -19,6 +20,12 @@ close($conn);
 </head>
 
 <?php
+$outCat = '';
+for ($i=0; $i < count($cat); $i++){
+    $outCat .='<p><a href="/category.php?id='.$cat[$i]['id'].'">'.$cat[$i]['description'].'</a></p>';
+}
+echo $outCat;
+echo '<hr>';
 $out = '';
 for ($i=0; $i < count($data); $i++){
     $out .="<img src='/images/{$data[$i]['image']}' width='100'>";

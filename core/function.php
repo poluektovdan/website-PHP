@@ -111,6 +111,42 @@ function getPostFromTag($conn){
     return $a;
 }
 
+function getPostFromCategory($conn){
+    $sql = "SELECT * FROM info WHERE category=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+    
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $a[] = $row;
+        }
+    } 
+    return $a;
+}
+
+function getCatInfo($conn){
+    $sql = "SELECT * FROM category WHERE id=".$_GET['id'];
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+    } 
+    return $row;
+}
+
+function getAllCatInfo($conn){
+    $sql = "SELECT * FROM category";
+    $result = mysqli_query($conn, $sql);
+    
+    $a = array();
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $a[] = $row;
+        }
+    } 
+    return $a;
+}
+
 function close($conn) {
 	mysqli_close($conn);
 }
